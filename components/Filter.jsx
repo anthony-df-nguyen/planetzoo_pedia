@@ -40,22 +40,22 @@ export default function Filters(props) {
       <div id="continent">
         <h3>or Filter by Continent</h3>
         <div className="filterCat">
-          <button className="stdButton " onClick={(e) => handleContinent(e)}>
+          <button className="stdButton grayFill  " onClick={(e) => handleContinent(e)}>
             Africa
           </button>
-          <button className="stdButton " onClick={(e) => handleContinent(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleContinent(e)}>
             Central America
           </button>
-          <button className="stdButton " onClick={(e) => handleContinent(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleContinent(e)}>
             Europe
           </button>
-          <button className="stdButton " onClick={(e) => handleContinent(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleContinent(e)}>
             North America
           </button>
-          <button className="stdButton " onClick={(e) => handleContinent(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleContinent(e)}>
             Oceania
           </button>
-          <button className="stdButton " onClick={(e) => handleContinent(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleContinent(e)}>
             South America
           </button>
         </div>
@@ -63,26 +63,26 @@ export default function Filters(props) {
       <div id="biome">
         <h3>or Filter by Biome</h3>
         <div className="filterCat">
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Aquatic
           </button>
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Desert
           </button>
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Grassland
           </button>
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Taiga
           </button>
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Temperate
           </button>
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Tropical
           </button>
 
-          <button className="stdButton " onClick={(e) => handleBiome(e)}>
+          <button className="stdButton grayFill " onClick={(e) => handleBiome(e)}>
             Tundra
           </button>
         </div>

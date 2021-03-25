@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Card(props) {
     const fullCard = (e) => {
-      const name = e.target.innerText;
+      const name = e.target.textContent;
       props.click(name);
     }
     return (
