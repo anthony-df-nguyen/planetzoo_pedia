@@ -1,65 +1,76 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { useState, useEffect } from "react";
+import animals from "../data/animals";
+import Card from "../components/Card";
+import AnimalCard from "../components/AnimalCard";
+import Searchbar from "../components/Searchbar";
+import SearchAnimalList from "../functions/TextSearchAnimalList";
+import Filters from "../components/Filter";
 
 export default function Home() {
+  const buildAnimalList = () => {
+    return animalList.map((row, i) => (
+      <Card
+        key={i}
+        name={row.name}
+        pic={row.imageLink}
+        click={updateSelectedAnimal}
+      />
+    ));
+  };
+
+  const [animalList, updateAnimalList] = useState(animals);
+  const [searchTerm, updateSearchTerm] = useState();
+  const [selectedAnimal, updateSelectedAnimal] = useState();
+  const [displayFullCard, updateFullCardDisplay] = useState("none");
+
+  //Filter list when text searching
+  useEffect(() => {
+    const filteredArray = SearchAnimalList(animals, searchTerm);
+    updateAnimalList(filteredArray);
+  }, [searchTerm]);
+
+  // //Load Full card when Animal is Clicked
+  useEffect(() => {
+    if (selectedAnimal) {
+      updateFullCardDisplay("block");
+    }
+  }, [selectedAnimal]);
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Planet Zoo Animal Companion</title>
+        <meta
+          name="Planet Zoo Animal Companion"
+          content="A simple web app to view the Planet Zoo Animal Zoopedia in a quick way on desktop and mobile"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div id="topHead">
+        <div className="wrapper">
+          <h1 id="siteName">Planet Zoo Animal Companion</h1>
+          <div>
+            <h3 style={{ marginBottom: "1rem" }}>Search by Name</h3>
+            <Searchbar function={updateSearchTerm}></Searchbar>
+            <Filters function={updateAnimalList} array={animals} />
+          </div>
         </div>
-      </main>
+      </div>
+      <div id="cardFlexBG">
+        <div className="wrapper">
+          <div id="cardFlex">{buildAnimalList()}</div>
+        </div>
+      </div>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <div id="backdrop" style={{ display: displayFullCard }}>
+        <AnimalCard
+          buttonFnc={[
+            () => updateFullCardDisplay("none"),
+            () => updateSelectedAnimal(),
+          ]}
+          array={animals.filter((row) => row.name === selectedAnimal)}
+        />
+      </div>
     </div>
-  )
+  );
 }

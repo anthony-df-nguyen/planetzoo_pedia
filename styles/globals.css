@@ -1,16 +1,324 @@
-html,
-body {
+* {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+  font-family: 'Noto Sans', sans-serif;
   box-sizing: border-box;
+}
+*::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.blur {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+html {
+  --white: #ffffff;
+  --green: #139b6d;
+  --darkblue: #072736;
+  --darkgreen: #08402d;
+  --gray: #dcdcdc;
+  --red: #ff5c5c;
+  --orange: #ff9017;
+  --darktext: #333333;
+  --transparentWhite: rgba(255, 255, 255, 0.7);
+}
+body {
+  color: var(--darktext);
+}
+h1,
+h2,
+h3 {
+  color: var(--white);
+}
+.redFill {
+  background-color: var(--red);
+}
+.orangeFill {
+  background-color: var(--orange);
+}
+.grayFill {
+  background-color: var(--gray);
+}
+.hover:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.stdButton {
+  height: -webkit-min-content;
+  height: min-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+  padding: 0.5rem;
+  border: 0px solid var(--gray);
+  border-radius: 5px;
+  font-weight: 700;
+}
+.stdButton:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.stdButton.activeButton {
+  background-color: var(--orange) !important;
+  box-shadow: inset 2px 2px 6px 1px rgba(0, 0, 0, 0.2);
+}
+.centerabs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.App {
+  display: block;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+.wrapper {
+  max-width: calc(100% - 2rem);
+  margin: 0 auto;
+}
+@media only screen and (min-width:1200px) {
+  .wrapper {
+    max-width: 1200px;
+  }
+}
+#topHead {
+  background-color: var(--green);
+  padding: 2rem 0;
+  box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+#topHead #siteName {
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#topHead .searchBar {
+  width: 100%;
+  border-radius: 5px;
+  height: 2rem;
+  border: 1px solid var(--gray);
+  background-color: var(--white);
+  padding: 0 0.5rem;
+  display: block;
+  margin: 0 auto;
+}
+#cardFlexBG {
+  background-color: var(--darkgreen);
+  background-image: url("/images/zebrapattern.svg");
+  z-index: 1;
+  min-height: 100vh;
+}
+#cardFlexBG #cardFlex {
+  padding: 2rem 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 0.5rem;
+}
+@media only screen and (min-width:768px) {
+  #cardFlexBG #cardFlex {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width:992px) {
+  #cardFlexBG #cardFlex {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+#cardFlexBG #cardFlex .card {
+  border-radius: 5px;
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: 4rem auto;
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+}
+#cardFlexBG #cardFlex .card:hover {
+  background-color: var(--orange);
+  cursor: pointer;
+}
+#cardFlexBG #cardFlex .card .animalPicture {
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px 0 0 5px;
+}
+#cardFlexBG #cardFlex .card .animalName {
+  align-self: center;
+  display: inline-block;
+  font-size: 1rem;
+  color: var(--darktext);
+  font-weight: 400;
+}
+#backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  height: 100vh;
+  width: 100vw;
+}
+#backdrop .fullAnimalCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: var(--darkblue);
+  background-image: url('/images/zebrapattern.svg');
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+  box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.2);
+}
+@media only screen and (min-width:768px) {
+  #backdrop .fullAnimalCard {
+    height: -webkit-min-content;
+    height: min-content;
+    max-width: calc(1200px - 4rem);
+  }
+}
+#backdrop .fullAnimalCard button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+#backdrop .fullAnimalCard .name {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  height: auto;
+  margin-bottom: 1rem;
+  padding: 0;
+  max-width: calc(280px);
+}
+@media only screen and (min-width:768px) {
+  #backdrop .fullAnimalCard .name {
+    max-width: calc(1200px - 2rem);
+  }
+}
+#backdrop .fullAnimalCard #top {
+  height: auto;
+  margin: 1rem auto 0.5rem auto;
+}
+#backdrop .fullAnimalCard #top .image {
+  display: block;
+  border-radius: 5px 5px 0 0;
+  margin-right: 0.5rem;
+  padding-top: 56.25%;
+  top: 0;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+#backdrop .fullAnimalCard #top .desc {
+  background-color: var(--white);
+  padding: 0.5rem;
+  color: var(--darktext);
+  max-height: 12rem;
+  overflow-y: scroll;
+  border-radius: 0 0 5px 5px;
+}
+@media only screen and (min-width:768px) {
+  #backdrop .fullAnimalCard #top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-wrap: nowrap;
+  }
+  #backdrop .fullAnimalCard #top .image {
+    display: block;
+    width: 100%;
+    height: 8rem;
+    padding-top: unset;
+    border-radius: 5px;
+  }
+  #backdrop .fullAnimalCard #top .desc {
+    display: block;
+    border-radius: 5px;
+    max-height: 8rem;
+  }
+}
+#backdrop .fullAnimalCard h3 {
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
+  color: var(--orange);
+}
+#backdrop .fullAnimalCard .flexGrouping {
+  margin: 1rem auto;
+}
+#backdrop .fullAnimalCard #infoFlex,
+#backdrop .fullAnimalCard #habitatInfo,
+#backdrop .fullAnimalCard #socialInfo {
+  margin: -0.5rem 0 0 -0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#backdrop .fullAnimalCard #infoFlex > div,
+#backdrop .fullAnimalCard #habitatInfo > div,
+#backdrop .fullAnimalCard #socialInfo > div {
+  flex-grow: 1;
+  color: var(--darktext);
+  background-color: var(--white);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0.5rem 0 0 0.5rem;
+}
+#backdrop .fullAnimalCard #infoFlex > div .flexName,
+#backdrop .fullAnimalCard #habitatInfo > div .flexName,
+#backdrop .fullAnimalCard #socialInfo > div .flexName {
+  font-weight: 700;
+  text-align: center;
+  color: var(--darkblue);
+}
+#backdrop .fullAnimalCard #infoFlex > div .flexContent,
+#backdrop .fullAnimalCard #habitatInfo > div .flexContent,
+#backdrop .fullAnimalCard #socialInfo > div .flexContent {
+  text-align: center;
+}
+#filters {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 0 -1rem;
+}
+@media only screen and (max-width:576px) {
+  #filters {
+    flex-direction: column;
+  }
+}
+#filters > div {
+  margin: 1rem 0 0 1rem;
+  flex-grow: 1;
+}
+#filters .filterCat {
+  margin: 0 0 0 -0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#filters .filterCat .stdButton {
+  flex-grow: 1;
+  margin: 0.5rem 0 0 0.5rem;
 }
