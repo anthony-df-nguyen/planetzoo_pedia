@@ -6,6 +6,7 @@ import AnimalCard from "../components/AnimalCard";
 import Searchbar from "../components/Searchbar";
 import SearchAnimalList from "../functions/TextSearchAnimalList";
 import Filters from "../components/Filter";
+import Footer from "../components/Footer"
 
 export default function Home() {
   const buildAnimalList = () => {
@@ -48,7 +49,9 @@ export default function Home() {
       </Head>
       <div id="topHead">
         <div className="wrapper">
-          <h1 id="siteName">Planet Zoo Animal Companion</h1>
+          <h1 id="siteName">
+            <span>Planet Zoo</span> <br></br>Animal Companion
+          </h1>
           <div>
             <h3 style={{ marginBottom: "1rem" }}>Search by Name</h3>
             <Searchbar function={updateSearchTerm}></Searchbar>
@@ -71,6 +74,7 @@ export default function Home() {
           array={animals.filter((row) => row.name === selectedAnimal)}
         />
       </div>
+      <Footer />
     </div>
   );
 }
