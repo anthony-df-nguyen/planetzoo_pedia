@@ -160,6 +160,7 @@ h3 {
   background-size: cover;
   background-position: center;
   border-radius: 5px 0 0 5px;
+  object-fit: contain;
 }
 #cardFlexBG #cardFlex .card .animalName {
   align-self: center;
